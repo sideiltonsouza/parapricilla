@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Pri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fdfbf7;
+            color: #4a4a4a;
+            overflow-x: hidden;
+          
+            overflow-y: hidden; 
+        }
+        h1, h2, h3, .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .handwritten {
+            font-family: 'Caveat', cursive;
+        }
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('IMG_20230805_212522.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .polaroid {
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .polaroid:hover {
+            transform: scale(1.02) rotate(1deg);
+            z-index: 10;
+        }
+        
+        
+        .pulse-border {
+            box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.7);
+            animation: pulse-orange 2s infinite;
+        }
+        @keyframes pulse-orange {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(212, 163, 115, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 163, 115, 0); }
+        }
+       
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4a373; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-overlay" class="z-50 bg-[#242424] flex flex-col items-center justify-center text-center transition-opacity duration-1000" style="display: flex; width: 100vw; height: 100vh; position: fixed;">
+        <div class="space-y-6 px-4">
+            <p class="text-[#ffd7ba] handwritten text-3xl md:text-4xl animate-pulse">Uma história especial...</p>
+            <h1 class="text-white text-5xl md:text-7xl font-light italic mb-8">Para Pricilla</h1>
+            
+            <button id="enter-btn" class="mt-8 px-10 py-4 border border-[#d4a373] text-[#d4a373] hover:bg-[#d4a373] hover:text-white transition duration-300 rounded-full font-[Montserrat] tracking-widest uppercase text-sm pulse-border bg-transparent cursor-pointer">
+                <i class="fa-solid fa-play mr-2"></i> Abrir
+            </button>
+        
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="musica.mp3" type="audio/mp3">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <header class="hero-bg h-screen flex items-center justify-center text-center px-4 relative" style="background: #242424;">
+        <div class="text-white z-10" data-aos="fade-in" data-aos-duration="2000">
+            <p class="text-xl md:text-2xl handwritten mb-2 opacity-90 text-[#ffd7ba]">Para você, Pricíuáila!</p>
+            <h1 class="text-5xl md:text-7xl font-light italic mb-6 leading-tight">Nossa História</h1>
+            
+            <div id="counter" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 serif-font text-2xl md:text-3xl bg-black/40 p-6 rounded-xl backdrop-blur-md border border-white/10">
+               
+            </div>
+            <p class="mt-6 text-sm opacity-90 font-light tracking-wider">Contando cada segundo desde que a gente se encontrou</p>
+            <p class="mt-6 text-sm opacity-90 font-light tracking-wider">Desculpa, não me lembro o dia exato, mas sei que foi por volta de FEV/2022 que nós começamos a nos ver.</p>
+
+        </div>
+        
+        <div class="absolute bottom-10 animate-bounce">
+            <svg class="w-8 h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-20 px-4 space-y-32">
+
+
+        <section class="text-center space-y-6" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl handwritten text-gray-800">Pri, olha só o que a gente viveu...</h2>
+            <p class="text-gray-600 leading-relaxed text-lg max-w-2xl mx-auto font-light">
+                As vezes a correria do dia a dia faz a gente esquecer dos detalhes, mas eu não esqueci. Reuni aqui um pouquinho do que fomos nós dois, claro que teve momentos que vc me odiou, aposto que teve muitas vezes que já quis me dar uns murros kks mas tudo bem, seria bem merecido rsrs, mas esquece as partes que fui chato, a gente foi feliz. Lembra disso?
+            </p>
+        </section>
+
+        <article class="flex flex-col md:flex-row items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="polaroid transform -rotate-2 group-hover:rotate-0 transition duration-500">
+                    <img src="IMG_20220625_203414.jpg" alt="Nós dois no começo" class="w-full h-auto object-cover rounded-sm filter contrast-110">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-3" data-aos="fade-left">
+                <div class="handwritten text-3xl text-[#d4a373]">Lá no comecinho</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    C'Burger e o inicio de tudo... Amava ir lá para o ap e a gente ir comer um burgão lá, conversar, sair curtir... foi nesse lugarzinho que eu olhei para você e pensei: "Caramba, essa menina é diferente". E foi mesmo, você mudou minha vida. Sério, não sabia que a partir daqueles pequenos momentos, eu começaria a amar vc de um jeito que de verdade, não sei explicar ainda, acho que palavras não dão conta, sabe?
+                </p>
+            </div>
+        </article>
+
+        <article class="flex flex-col md:flex-row-reverse items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="fade-left">
+                <div class="polaroid transform rotate-1 group-hover:rotate-0 transition duration-500">
+                    <img src="IMG_20220911_093249.jpg" alt="Pedalando juntos" class="w-full h-auto object-cover rounded-sm">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-right space-y-3" data-aos="fade-right">
+                <div class="handwritten text-3xl text-[#d4a373]">Nossas Aventuras</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    Tivemos algumas aventuras juntos, tipo essa com sol na cara, capacete torto e eu tentando parecer o "fodão pedaleiro" kkkks o que um cara não faz pra impressionar uma mulher, né?. Podia ser cansativo, eu com o pingolin dormente e assado, mas e daí né, ter você do lado fazia qualquer subida parecer descida.
+                </p>
+            </div>
+        </article>
+
+       
+        <article class="flex flex-col md:flex-row items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="polaroid transform -rotate-1 group-hover:rotate-0 transition duration-500">
+                    <img src="IMG_20221217_221245.jpg" alt="Jogando sinuca" class="w-full h-auto object-cover rounded-sm">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-3" data-aos="fade-left">
+                <div class="handwritten text-3xl text-[#d4a373]">Simplicidade</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    A gente nunca precisou de luxo pra ser feliz, né? Claro que não vamos ser hipócritas, queremos o luxo e ainda quero que tenhamos, mas até mesmo uma cervejinha, uma mesa de sinuca, seu drink bonitinho e a gente se divertia horrores. Saudade dessa leveza.
+                </p>
+            </div>
+        </article>
+
+        
+        <article class="flex flex-col md:flex-row-reverse items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="fade-left">
+                <div class="polaroid transform rotate-2 group-hover:rotate-0 transition duration-500">
+                    <img src="IMG_20230722_185846.jpg" alt="Tomando Milkshake" class="w-full h-auto object-cover rounded-sm">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-right space-y-3" data-aos="fade-right">
+                <div class="handwritten text-3xl text-[#d4a373]">Doce igual a você</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    Momentos doces... dividir um milkshake e conversar sobre a vida. Eram nessas horas que eu percebia o quanto eu gostava da sua companhia. Sinto que não fizemos nem 1% do que deveriamos e mereciamos, mas os poucos momentos que tivemos foram os melhores.
+                </p>
+            </div>
+        </article>
+
+    
+        <article class="flex flex-col md:flex-row items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="zoom-in">
+                <div class="polaroid transform scale-105 transition duration-500 relative">
+                    <div class="absolute -top-4 -right-4 text-4xl text-red-400 opacity-80 animate-pulse">♥</div>
+                    <img src="IMG_20230805_212522.jpg" alt="Beijo no rosto" class="w-full h-auto object-cover rounded-sm">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-3" data-aos="fade-up">
+                <div class="handwritten text-3xl text-[#d4a373]">Meu porto seguro</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    Esse carinho aqui... sem palavras. Você me fazia sentir o cara mais sortudo do mundo, dava vontade de sair gritando pra todo mundo o quanto te achava (e ainda acho) muito foda. Você me fez muito bem, Pricíuáila, vc não tem idéia do quanto.
+                </p>
+            </div>
+        </article>
+
+
+        <article class="flex flex-col md:flex-row-reverse items-center gap-8 group bg-white p-6 rounded-lg shadow-md border border-gray-100" data-aos="fade-up">
+            <div class="w-full md:w-1/2 flex items-center justify-center bg-gray-100 h-64 rounded-lg overflow-hidden relative">
+            
+                <img src="carro.jpg" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'text-center p-8\'><i class=\'fa-solid fa-car-side text-6xl text-gray-300 mb-4\'></i><p class=\'text-gray-400 text-sm\'>Foto do nosso filhão aqui<br>(adicione carro.jpg)</p></div>'" alt="Nosso Carro" class="w-full h-full object-cover">
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-right space-y-3">
+                <div class="handwritten text-4xl text-[#d4a373]">Nosso "Filho"</div>
+                <h3 class="text-xl serif-font italic">A conquista da gente</h3>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    Lembra quando a gente pegou ele? Nossa conquista, nosso esforço junto. Não era só um carro, era a prova de que a gente funcionava bem demais como time. Quantos planos a gente não fez dentro dele, hein? Sei que esse filho ainda vai nos levar pra muitos lugares, apesar de ter nos dado uns problemas, mas qual filho não dá, né? rsrs
+                </p>
+            </div>
+        </article>
+
+        <article class="flex flex-col md:flex-row items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="polaroid transform -rotate-1 group-hover:rotate-0 transition duration-500">
+                    <img src="IMG_20230811_215154.jpg" alt="No show" class="w-full h-auto object-cover rounded-sm">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-3" data-aos="fade-left">
+                <div class="handwritten text-3xl text-[#d4a373]">Nossa Vibe</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    Música alta, galera em volta, mas a minha sintonia era só com você. A gente sempre soube curtir junto, na mesma frequência, tipo, lembrei do primeiro show que fomos, Rick e Renner, eu cantando alto, vc  tentando acompanhar (e falhando kkkk). Esses momentos me mostraram o quanto a gente se completa, e ainda lemnbro do ciume bobo que eu senti quando vi você olhando muito pro guitarrista rruuuuummmmm skksksks. Enfim, foi massa demais. Desculpa, baianei e não achei foto desse dia (tem só não sei onde mais rs) então vai essa mesmo (Di Paulo e Paulinho).
+                </p>
+            </div>
+        </article>
+
+     
+        <article class="flex flex-col md:flex-row-reverse items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="fade-left">
+                <div class="polaroid transform rotate-2 group-hover:rotate-0 transition duration-500">
+                    <img src="IMG_20231231_220001.jpg" alt="Luzes de fim de ano" class="w-full h-auto object-cover rounded-sm">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-right space-y-3" data-aos="fade-right">
+                <div class="handwritten text-3xl text-[#d4a373]">Brilho</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    Virada de ano... todo mundo olhando pros fogos, fazendo planos e eu só olhando pra você. Pra mim, seu brilho sempre ofuscou qualquer decoração de Natal. Sempre que te via pensava: "Caramba, como eu tive sorte de te encontrar? Que mulherão da porra véi!". Você iluminou minha vida de um jeito que eu nem sabia que precisava.
+                </p>
+            </div>
+        </article>
+
+        <article class="w-full bg-white p-6 shadow-lg rounded-xl border border-gray-100" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-1/2 relative group">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition duration-500 rounded-lg pointer-events-none"></div>
+                    <video class="w-full rounded-lg shadow-md" autoplay loop muted playsinline>
+                        <source src="PXL_20240202_093708304.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeo.
+                    </video>
+                </div>
+                <div class="w-full md:w-1/2 text-center md:text-left space-y-3">
+                    <div class="handwritten text-3xl text-[#d4a373]">Pé na estrada</div>
+                    <p class="text-gray-600 font-light leading-relaxed">
+                        Viagens, estradas, janelas observando o mundo lá fora... Mas o meu mundo estava ali, sentado na poltrona do lado. Não importava o destino, desde que eu fosse com você. Guardo essas memórias com muito carinho, Caldas foi top demais! Já disse antes mas repito: você me fez um homem muito feliz.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <article class="flex flex-col md:flex-row items-center gap-8 group">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="polaroid transform rotate-1 group-hover:rotate-0 transition duration-500">
+                    <img src="IMG_20240217_160248.jpg" alt="No parque" class="w-full h-auto object-cover rounded-sm">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left space-y-3" data-aos="fade-left">
+                <div class="handwritten text-3xl text-[#d4a373]">Risada boa</div>
+                <p class="text-gray-600 font-light leading-relaxed">
+                    Mesmo nos dias comuns, você tinha esse dom de me fazer rir. Você me fez um homem mais leve, Pri. E eu sou muito grato por isso. Esperoq eu tenha conseguido fazer o mesmo por você, se não, me perdoa por favor.
+                </p>
+            </div>
+        </article>
+
+    
+        <article class="w-full bg-white p-6 shadow-lg rounded-xl border border-gray-100" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+                <div class="w-full md:w-1/2">
+                    <video class="w-full rounded-lg shadow-md" autoplay loop muted playsinline>
+                        <source src="VID_20251018_134940.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeo.
+                    </video>
+                </div>
+                <div class="w-full md:w-1/2 text-center md:text-right space-y-3">
+                    <div class="handwritten text-3xl text-[#d4a373]">Nossa Paz</div>
+                    <p class="text-gray-600 font-light leading-relaxed">
+                        Remando no mesmo ritmo. Momentos assim me lembram de como a vida pode ser bonita e tranquila quando se tem parceria de verdade. E claro, você sempre foi minha parceira, independente de tudo.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        
+        <section class="py-24 text-center relative" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+                <svg class="w-96 h-96 text-red-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            
+            <div class="glass-card p-10 md:p-16 max-w-2xl mx-auto rounded-xl shadow-2xl relative z-10">
+                <h2 class="text-4xl md:text-5xl handwritten mb-8 text-gray-800">Pricilla...</h2>
+                <div class="space-y-6 text-lg font-light leading-relaxed text-gray-700">
+                    <p>
+                        Sei que a vida tem seus caminhos e a gente nem sempre entende o roteiro, não sabemos o pq nem quando mas eu precisava te dizer isso.
+                    </p>
+                    <p>
+                        Independente do que aconteça daqui pra frente, ou de quem esteja ao seu lado, eu quero que você saiba: <strong>você me fez um homem muito feliz. (está repetitivo isso já, eu sei, mas é porque é fato!)</strong> A nossa história não é passado pra mim, ela é parte de quem eu sou hoje.
+                    </p>
+                    <p class="handwritten text-2xl mt-8 text-[#d4a373] block transform -rotate-1">
+                        "Meu amor por você vai além da convivência. É um amor que torce pela sua felicidade, seja ela onde for."
+                    </p>
+                    <p class="text-base mt-6">
+                        Obrigado por ter me feito um homem melhor, Pricíuáila. Queria separar mais fotos e vídeos para ilustrar tudo que passamos, mas acho que o mais importante está aqui: meu sentimento por você. (e tambem sou ansioso e queria terminar de codar logo para te mandar kkkk). Não é pedindo pra voltar, nem nada do tipo, só queria que você soubesse disso. Você é muito especial pra mim, sempre será. Tire seu tempo, o quanto precisar e se caso o destino seja mesmo te ter longe, eu vou entender, mas adoraria que seu futuro marido pelo menos não te proibisse de me ver, isso doeria muito.
+                    </p>
+                </div>
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <p class="text-sm text-gray-400 uppercase tracking-widest mb-2">Com amor,</p>
+                    <p class="serif-font text-2xl italic">Sid, Sidoca, Sidzão, Amor... sei lá pode me chamr do que quiser, você conquistou esse direito.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 text-gray-400 text-xs tracking-wider opacity-60">
+        SIDEILTON SOUZA - 2025 &copy; Todos os direitos reservados.
+    </footer>
+
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        
+        AOS.init({
+            once: true,
+            offset: 80,
+            duration: 1000,
+        });
+
+        
+        const enterBtn = document.getElementById('enter-btn');
+        const overlay = document.getElementById('welcome-overlay');
+        const bgMusic = document.getElementById('bgMusic');
+
+        enterBtn.addEventListener('click', function() {
+           
+            bgMusic.play().then(() => {
+                console.log("Música iniciada");
+            }).catch(error => {
+                console.log("Autoplay bloqueado ou erro no áudio:", error);
+                
+            });
+
+            
+            overlay.style.opacity = '0';
+            
+           
+            document.body.style.overflowY = 'auto';
+
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+               
+                AOS.refresh(); 
+            }, 1000);
+        });
+
+        
+        function updateCounter() {
+            const startDate = new Date('2022-02-01T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const years = Math.floor(days / 365);
+            const remainingDays = days % 365;
+
+            const container = document.getElementById('counter');
+            container.innerHTML = `
+                <div class="flex flex-col"><span class="font-bold text-3xl md:text-5xl text-[#d4a373]">${days}</span><span class="text-xs uppercase tracking-wider text-white opacity-80 mt-1">Dias Totais</span></div>
+                <div class="flex flex-col"><span class="font-bold text-3xl md:text-5xl text-[#d4a373]">${years}</span><span class="text-xs uppercase tracking-wider text-white opacity-80 mt-1">Anos</span></div>
+                <div class="flex flex-col"><span class="font-bold text-3xl md:text-5xl text-[#d4a373]">${remainingDays}</span><span class="text-xs uppercase tracking-wider text-white opacity-80 mt-1">Dias</span></div>
+                <div class="flex flex-col"><span class="font-bold text-3xl md:text-5xl text-[#d4a373]">∞</span><span class="text-xs uppercase tracking-wider text-white opacity-80 mt-1">Memórias</span></div>
+            `;
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 1000 * 60 * 60); 
+    </script>
+</body>
+</html>
